@@ -1,0 +1,12 @@
+main {
+  min-height: 90vh;
+}
+#app-header {
+
+}
+
+#app-footer {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 5px 0;
+}
