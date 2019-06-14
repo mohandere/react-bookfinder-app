@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import isEmpty from 'lodash/isEmpty'
 import './book.css'
@@ -25,7 +23,7 @@ const Book = ({ match: { params } }) => {
       setIsFetching(false)
     })
 
-  }, []);
+  }, [params.ID]);
 
   let jsxStr = ''
   if (isFetching) {
@@ -39,7 +37,6 @@ const Book = ({ match: { params } }) => {
       title,
       subtitle,
       imageLinks,
-      infoLink,
       description
     } = bookInfo.volumeInfo;
 
@@ -50,7 +47,11 @@ const Book = ({ match: { params } }) => {
         <div className="book-card--body">
           <figure className="book-card--thumbnail">
             {imageLinks
-              ? <img src={imageLinks.thumbnail} className="img-responsive" />
+              ? <img
+                src={imageLinks.thumbnail}
+                className="img-responsive"
+                alt={title}
+                />
               : null
             }
           </figure>
