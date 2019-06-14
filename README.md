@@ -1,3 +1,8 @@
+# bookfinder-app
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c93ac586-e778-4b25-891a-68d50d14ec43/deploy-status)](https://app.netlify.com/sites/bookfinder-app/deploys)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
