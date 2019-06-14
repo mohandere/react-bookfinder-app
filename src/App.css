@@ -4,7 +4,10 @@ main {
 #app-header {
 
 }
-
+.page {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
 #app-footer {
   text-align: center;
   background-color: #f8f9fa;

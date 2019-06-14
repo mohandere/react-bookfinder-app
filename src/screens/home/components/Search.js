@@ -11,15 +11,19 @@ const Search = ({ getBooks, query }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
   }
-  const onInputChange = (e) => {
-    getBooks(e.target.value);
+  const debouncedGetBooks = debounce(query => {
+    getBooks(query);
+  }, 700);
+
+  const onInputChange = e => {
+    debouncedGetBooks(e.target.value)
   }
 
   return (
     <div className="search-books">
       <Form className="search-books--form" onSubmit={handleOnSubmit}>
         <Form.Group controlId="formBasicEmail">
-          <Form.Control type="text" onChange={onInputChange} placeholder="Harry Potter, Food and Love" value={query} />
+          <Form.Control type="text" onChange={onInputChange} placeholder="Harry Potter, Food and Love" />
           <Form.Text className="text-muted">
             Search the world's most comprehensive index of full-text books.
           </Form.Text>

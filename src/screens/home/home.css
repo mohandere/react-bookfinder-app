@@ -31,3 +31,9 @@
   padding: 0 15px;
   margin-bottom: 30px;
 }
+.book--description {
+  max-height: 140px;
+  margin-top: 10px;
+  font-size: 12px;
+  overflow: auto;
+}

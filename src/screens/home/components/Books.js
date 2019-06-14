@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import isEmpty from 'lodash/isEmpty'
+import uniq from 'lodash/uniq'
+import indexOf from 'lodash/indexOf'
 import Card from 'react-bootstrap/Card'
-
+import Button from 'react-bootstrap/Button'
 
 const renderBooksList = (data, query) => {
   if (isEmpty(data)) {
@@ -11,18 +14,27 @@ const renderBooksList = (data, query) => {
   }
   let { items: books, totalItems, kind } = data;
   let booksList = books.map(book => {
-    let { title, imageLinks, infoLink } = book.volumeInfo;
+  let {
+    title,
+    subtitle,
+    imageLinks,
+    infoLink,
+    description
+  } = book.volumeInfo;
+
     return (
       <div key={book.id} className="book">
         <Card>
-          <Card.Img variant="top" src={imageLinks.thumbnail} />
+          {imageLinks
+            ? <Card.Img variant="top" src={imageLinks.thumbnail} />
+            : null
+          }
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
-            </Card.Text>
-            <a className="book" href={infoLink} target="_blank" rel="noopener">View</a>
+            <Card.Subtitle>{subtitle}</Card.Subtitle>
+            <Card.Text className="book--description">{description}</Card.Text>
+            {/* <Card.Link href={infoLink} target="_blank" rel="noopener">Preview</Card.Link> */}
+            <Link className="book" to={`/book/${book.id}`}>View</Link>
           </Card.Body>
         </Card>
       </div>
@@ -32,7 +44,6 @@ const renderBooksList = (data, query) => {
     <>
       <h3>Search results for: {query}</h3>
       <p>Total results: {totalItems}</p>
-      <p>Kind: {kind}</p>
       <div className="books-list">
         {booksList}
       </div>
